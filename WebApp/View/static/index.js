@@ -31,13 +31,19 @@ function hourlyEq() {
                 let lng = features[i].geometry.coordinates[0];
                 let latLng = new google.maps.LatLng(lat, lng);
 				let magnitude = features[i].properties.mag;
+				
+				let txt = " ";
+				
+				if (i < 10) {
+					txt = "Grad:" + city_data[i*2] + "\nPopulacija:" + city_data[i*2+1];
+				}
                 
                 heatmapData.push(latLng);
 
                 new google.maps.Marker({
                     position: latLng,
                     map: map,
-					label: { color: '#00aaff', fontWeight: 'bold', fontSize: '14px', text: 'Neki marker' }
+					label: { color: '#00aaff', fontWeight: 'bold', fontSize: '14px', text: txt }
                 })
 
                 const circle = new google.maps.Circle({
