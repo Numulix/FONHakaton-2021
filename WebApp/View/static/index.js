@@ -36,7 +36,8 @@ function hourlyEq() {
 
                 new google.maps.Marker({
                     position: latLng,
-                    map: map
+                    map: map,
+					label: { color: '#00aaff', fontWeight: 'bold', fontSize: '14px', text: 'Neki marker' }
                 })
 
                 const circle = new google.maps.Circle({

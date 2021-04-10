@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from skimage.transform import rescale
 from scipy.optimize import minimize
+import os.path
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 plt.rcParams["figure.figsize"] = (15, 15)
 def load_population_matrix(path, scale):
@@ -18,10 +20,12 @@ def load_population_matrix(path, scale):
     img = img[:,:,0]
     return rescale(img, scale, anti_aliasing=False)
 
+def open_smth():
+	ff = open(os.path.join(BASE, "blabla.txt"), 'r')
+	return 'nesto'
 
 def get_optimal_distribution(available_res=10000, ret_size=10):
-	
-    cities = pd.read_csv('jp.csv')[['city', 'population']]
+    cities = pd.read_csv(os.path.join(BASE, "jp.csv"))[['city', 'population']]
     goal = np.random.randint(10, 100, size=len(cities))
     n = len(cities)
     cities.head()
