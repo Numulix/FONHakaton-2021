@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from skimage.transform import rescale
+from scipy.optimize import minimize
 
 plt.rcParams["figure.figsize"] = (15, 15)
 def load_population_matrix(path, scale):
@@ -16,14 +18,14 @@ def load_population_matrix(path, scale):
     img = img[:,:,0]
     return rescale(img, scale, anti_aliasing=False)
 
-def get_optimal_distribution(available_res=10000):
+def get_optimal_distribution(available_res=10000, ret_size=10):
     cities = pd.read_csv('jp.csv')[['city', 'population']]
     goal = np.random.randint(10, 100, size=len(cities))
     n = len(cities)
     cities.head()
 
     def cost_fun(x):
-    return np.mean((x-goal)**2)
+        return np.mean((x-goal)**2)
 
     def constraint1(x):
         return available_res - np.sum(x)
@@ -44,20 +46,14 @@ def get_optimal_distribution(available_res=10000):
     solution = minimize(cost_fun, x0, bounds=bnds, constraints=cons)
     x = np.array(solution.x).astype(np.int64)
 
-
-    # show final objective
-    # print('Final Objective: ' + str(cost_fun(x)))
-
-    # print('Used resources:', sum(x))
-
-    # print solution
-    # print('Solution')
-    # print(x)
-
-    return [x for x in zip(cities['city'].values, x)]
+    ret = [x for x in zip(cities['city'].values, x)]
+    ret.sort(key=lambda x: x[1], reverse=True)
+    return ret[0:ret_size]
 
 if __name__ == "__main__":
     img = load_population_matrix('jpn_ppp_2020_1km_Aggregated.tif', 0.2)
     print(img.shape)
     plt.imshow(img, cmap='viridis')
     plt.show()
+
+    print(get_optimal_distribution())
