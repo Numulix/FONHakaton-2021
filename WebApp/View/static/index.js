@@ -19,16 +19,25 @@ function initMap() {
 }
 
 function hourlyEq() {
-    fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson")
+    fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson")
         .then(response => response.json())
         .then(data => {
             features = data.features;
+
+            const heatmapData = [];
 
             for (let i = 0; i < features.length; i++) {
                 let lat = features[i].geometry.coordinates[1];
                 let lng = features[i].geometry.coordinates[0];
                 let latLng = new google.maps.LatLng(lat, lng);
 				let magnitude = features[i].properties.mag;
+                
+                heatmapData.push(latLng);
+
+                new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                })
 
                 const circle = new google.maps.Circle({
 				  strokeColor: "#FF0000",
@@ -41,6 +50,12 @@ function hourlyEq() {
 				  radius: Math.pow(2, magnitude)/2,
 				});
             }
+
+            new google.maps.visualization.HeatmapLayer({
+                data: heatmapData,
+                dissipating: false,
+                map: map
+            })
 
         });
 }
