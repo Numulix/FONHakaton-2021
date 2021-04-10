@@ -18,7 +18,9 @@
 		<script language="javascript" src="{% static './index.js' %}"></script>
 
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="{% static './style.css' %}"
+		<link rel="stylesheet" type="text/css" href="{% static './style.css' %}">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 		
 		<!--
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -35,7 +37,7 @@
 		{% endblock content %}
 
 		<script async
-    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS3VD6WfKd597OMMgc_EA0SsdZzDxeS84&callback=initMap">
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS3VD6WfKd597OMMgc_EA0SsdZzDxeS84&libraries=visualization&callback=initMap">
 		</script>
 
 	</body>
