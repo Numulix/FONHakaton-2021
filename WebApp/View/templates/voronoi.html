@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+	<form action="{% url 'unesi_koordinatu' %}" method="post">
+		{% csrf_token %}
+	
+		<label for="xkoord">x koordinata:</label>
+		<input type="text" id="xkoord" name="xkoord">
+		<label for="ykoord">y koordinata:</label>
+		<input type="text" id="ykoord" name="ykoord">
+		<button type="submit" class="btn btn-danger">Unesi</button>
+	</form>
+	<img src="data:image/png;base64, {{ pic }}" alt="" height="750" width="750">
+
+{% endblock %}

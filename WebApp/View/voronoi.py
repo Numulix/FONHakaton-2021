@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi, voronoi_plot_2d
 import numpy as np
 
-def voronoi_funkcija():
+def voronoi_funkcija(new_point = [50, 50]):
 
 	M = 10
 	points = np.random.uniform(0, 100, size=(M, 2))
@@ -12,8 +12,7 @@ def voronoi_funkcija():
 	  
 	vor = Voronoi(points)
 	voronoi_plot_2d(vor)
-
-	new_point = [50, 50]   
+ 
 	plt.plot(new_point[0], new_point[1], 'ro')
 
 	point_index = np.argmin(np.sum((points - new_point)**2, axis=1))
@@ -23,11 +22,14 @@ def voronoi_funkcija():
 
 	polygon = vor.vertices[region]
 	print(points[point_index],list_of_hospitals[point_index])
-	plt.fill(*zip(*polygon), color='yellow')  
-	plt.show()
-
+	plt.fill(*zip(*polygon), color='yellow')
+	
+	'''
 	fig = voronoi_plot_2d(vor)
 
 	fig = voronoi_plot_2d(vor, show_vertices=False, line_colors='orange',
 					line_width=2, line_alpha=0.6, point_size=2)
 	plt.show()
+	'''
+	
+	return plt.gcf()
