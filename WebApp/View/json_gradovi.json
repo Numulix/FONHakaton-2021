@@ -1,0 +1,122 @@
+{
+	"Belgrade": {
+		"Belgrade": 42,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 331,
+		"Kragujevac": 1129,
+		"Subotica": 0,
+		"Valjevo": 1045,
+		"Loznica": 225,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Novi Sad": {
+		"Belgrade": 5,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 55,
+		"Kragujevac": 199,
+		"Subotica": 0,
+		"Valjevo": 276,
+		"Loznica": 228,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Ni\u0161": {
+		"Belgrade": 0,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 0,
+		"Kragujevac": 365,
+		"Subotica": 0,
+		"Valjevo": 0,
+		"Loznica": 0,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Zemun": {
+		"Belgrade": 16,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 110,
+		"Kragujevac": 98,
+		"Subotica": 0,
+		"Valjevo": 95,
+		"Loznica": 3,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Kragujevac": {
+		"Belgrade": 0,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 0,
+		"Kragujevac": 300,
+		"Subotica": 0,
+		"Valjevo": 0,
+		"Loznica": 0,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Subotica": {
+		"Belgrade": 0,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 0,
+		"Kragujevac": 0,
+		"Subotica": 0,
+		"Valjevo": 54,
+		"Loznica": 155,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Valjevo": {
+		"Belgrade": 0,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 0,
+		"Kragujevac": 0,
+		"Subotica": 0,
+		"Valjevo": 179,
+		"Loznica": 0,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Loznica": {
+		"Belgrade": 0,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 0,
+		"Kragujevac": 0,
+		"Subotica": 0,
+		"Valjevo": 0,
+		"Loznica": 171,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Zrenjanin": {
+		"Belgrade": 18,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 65,
+		"Kragujevac": 5,
+		"Subotica": 0,
+		"Valjevo": 42,
+		"Loznica": 23,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	},
+	"Pancevo": {
+		"Belgrade": 4,
+		"Novi Sad": 0,
+		"Nis": 0,
+		"Zemun": 39,
+		"Kragujevac": 93,
+		"Subotica": 0,
+		"Valjevo": 14,
+		"Loznica": 0,
+		"Zrenjanin": 0,
+		"Pancevo": 0
+	}
+}

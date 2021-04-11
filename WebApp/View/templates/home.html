@@ -7,34 +7,33 @@
 		<div class="col-sm">
 		  <ul class="nav nav-tabs" data-tabs="tabs">
 			  <li class="nav-item">
-				<a class="nav-link active" data-toggle = "tab" aria-current="page" href="#hum-svrhe">Humaniratne svrhe</a>
-			  </li>
-			  <li class="nav-item">
 				<a class="nav-link" data-toggle = "tab" href="#vatrogasci">Vatrogasci</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" data-toggle = "tab" href="#hitna-pomoc">Hitna pomoc</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" data-toggle = "tab" href="#vojska">Vojska</a>
 			  </li>
 			</ul>
 		
 			<div class="tab-content">
-				<div class="tab-pane container active" id="hum-svrhe">
-					<p>3 ljudi je zaineresovano da pomogne. Prihvatiti pomoc?</p>
-					<button type="button" class="btn btn-success">Prihvati</button>
-				</div>
 				<div class="tab-pane container " id="vatrogasci">
 					<p>50 vatrogasaca je na raspolaganju.</p>
 				</div>
-				<div class="tab-pane container " id="hitna-pomoc">
-					70 medicinskih radnika je na raspolaganju.
-				</div>
-				<div class="tab-pane container " id="vojska">
-					400 vojnika je na raspolaganju (za izuzetno kriticne situacije).
-				</div>
 			  </div>
+		
+			<table class="table" id="tabela-optimalne-raspodele" style="width:600px;">
+				
+				<tr>
+				{% for key, value in tabela.items %}
+					<th>{{ key }}</th>
+				{% endfor %}	
+				</tr>
+				{% for key, value in tabela.items %}
+				<tr>
+					<td>{{ key }}</td>
+					{% for k1, v1 in value.items %}
+						<td> {{ v1 }} <td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+				
+			</table>
 
 		</div>
 		<div class="col-sm" id="map">
