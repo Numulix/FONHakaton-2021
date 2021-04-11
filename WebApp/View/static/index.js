@@ -1,5 +1,6 @@
 var map;
 var service;
+const markers = [];
 const circles = [];
 
 var dummy_epicenters = [
@@ -68,7 +69,7 @@ function initMap() {
 
     for (let i = 0; i < 11; i++) {
         console.log(dummy_resources.city[i]);
-        markPlaceByName(dummy_resources.city[i]);
+        markPlaceByNameAddInfoWindow(dummy_resources.city[i], dummy_resources.resources[i]);
     }
     //markPlaceByName(dummy_resources.city[0]);
 
@@ -143,15 +144,25 @@ function addMarker() {
 }
 
 
-function markPlaceByName(name) {
+function markPlaceByNameAddInfoWindow(name, available) {
     fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + name + ".json?access_token=pk.eyJ1Ijoibm9idWxsaSIsImEiOiJja25kNnByNmcwbGN1MnZvN3ZzZ2h5N3l2In0.yrsXOOfcJ8UxMN-jEyZIqA")
         .then(response => response.json())
         .then(data => {
             console.log(data.features[0]);
             let latLng = new google.maps.LatLng(data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0])
-            new google.maps.Marker({
+            let marker = new google.maps.Marker({
                 position: latLng,
                 map: map
+            })
+
+            markers.push(marker);
+
+            let infoWindow = new google.maps.InfoWindow({
+                content: `<h3><strong>${name}</strong> - Dostupno: ${available}</h3>`
+            })
+
+            marker.addListener("click", () => {
+                infoWindow.open(map, marker);
             })
         })
 }
