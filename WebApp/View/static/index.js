@@ -3,42 +3,58 @@ var service;
 const markers = [];
 const circles = [];
 
-var dummy_epicenters = [
-    {
-        epicenter: [44.117512, 20.189369],
-        magnitude: 6
-    }, {
-        epicenter: [43.886935, 20.556935],
-        magnitude: 7
-    }, {
-        epicenter: [43.654546, 20.838094],
-        magnitude: 7
-    }]
+var dummy_epicenters = [{
+	"epicenter": [44.117512, 20.189369],
+	"magnitude": 6
+}, {
+	"epicenter": [43.886935, 20.556935],
+	"magnitude": 8.5
+}, {
+	"epicenter": [43.654546, 20.838094],
+	"magnitude": 8
+}, {
+	"epicenter": [45.415727, 20.205249],
+	"magnitude": 8
+}]
 
 var dummy_resources = {
 	"city": {
 		"0": "Belgrade",
 		"1": "Novi Sad",
-		"2": "Nis",
+		"2": "Ni\u0161",
 		"3": "Zemun",
 		"4": "Kragujevac",
 		"5": "Subotica",
 		"6": "Valjevo",
 		"7": "Loznica",
 		"8": "Zrenjanin",
-		"9": "Pancevo"
+		"9": "Pan\u010devo",
+		"10": "\u010ca\u010dak",
+		"11": "Kraljevo",
+		"12": "Novi Pazar",
+		"13": "Leskovac",
+		"14": "U\u017eice",
+		"15": "Kru\u0161evac",
+		"16": "Vranje"
 	},
 	"resources": {
-		"0": 2757.364,
-		"1": 760.0,
-		"2": 366.328,
-		"3": 323.192,
-		"4": 301.246,
-		"5": 211.362,
-		"6": 180.624,
-		"7": 172.826,
-		"8": 153.022,
-		"9": 152.406
+		"0": 4595.6066666667,
+		"1": 1266.6666666667,
+		"2": 610.5466666667,
+		"3": 538.6533333333,
+		"4": 502.0766666667,
+		"5": 352.27,
+		"6": 301.04,
+		"7": 288.0433333333,
+		"8": 255.0366666667,
+		"9": 254.01,
+		"10": 239.61,
+		"11": 222.2933333333,
+		"12": 221.7566666667,
+		"13": 200.96,
+		"14": 199.1566666667,
+		"15": 195.8166666667,
+		"16": 183.7933333333
 	}
 }
 
@@ -67,7 +83,7 @@ function initMap() {
         }))
     }
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < Object.keys(dummy_resources.city).length; i++) {
         console.log(dummy_resources.city[i]);
         markPlaceByNameAddInfoWindow(dummy_resources.city[i], dummy_resources.resources[i]);
     }
