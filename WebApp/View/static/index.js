@@ -1,4 +1,5 @@
 var map;
+var service;
 const circles = [];
 
 var dummy_epicenters = [
@@ -13,6 +14,33 @@ var dummy_epicenters = [
         magnitude: 7
     }]
 
+var dummy_resources = {
+	"city": {
+		"0": "Belgrade",
+		"1": "Novi Sad",
+		"2": "Nis",
+		"3": "Zemun",
+		"4": "Kragujevac",
+		"5": "Subotica",
+		"6": "Valjevo",
+		"7": "Loznica",
+		"8": "Zrenjanin",
+		"9": "Pancevo"
+	},
+	"resources": {
+		"0": 2757.364,
+		"1": 760.0,
+		"2": 366.328,
+		"3": 323.192,
+		"4": 301.246,
+		"5": 211.362,
+		"6": 180.624,
+		"7": 172.826,
+		"8": 153.022,
+		"9": 152.406
+	}
+}
+
 function initMap() {
 
     let options = {
@@ -21,6 +49,8 @@ function initMap() {
     }
 
     map = new google.maps.Map(document.getElementById("map"), options);
+
+    service = new google.maps.places.PlacesService(map);
 
     for (let i = 0; i < dummy_epicenters.length; i++) {
         let latLng = new google.maps.LatLng(dummy_epicenters[i].epicenter[0], dummy_epicenters[i].epicenter[1])
@@ -35,6 +65,12 @@ function initMap() {
             radius: Math.pow(2, dummy_epicenters[i].magnitude) * 100
         }))
     }
+
+    for (let i = 0; i < 11; i++) {
+        console.log(dummy_resources.city[i]);
+        markPlaceByName(dummy_resources.city[i]);
+    }
+    //markPlaceByName(dummy_resources.city[0]);
 
     hourlyEq();
 	
@@ -104,4 +140,18 @@ function addMarker() {
         position: latLng,
         map: map
     })
+}
+
+
+function markPlaceByName(name) {
+    fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + name + ".json?access_token=pk.eyJ1Ijoibm9idWxsaSIsImEiOiJja25kNnByNmcwbGN1MnZvN3ZzZ2h5N3l2In0.yrsXOOfcJ8UxMN-jEyZIqA")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.features[0]);
+            let latLng = new google.maps.LatLng(data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0])
+            new google.maps.Marker({
+                position: latLng,
+                map: map
+            })
+        })
 }
