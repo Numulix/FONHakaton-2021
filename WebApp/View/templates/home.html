@@ -5,36 +5,48 @@
 	<div class="container">
 	  <div class="row align-self-center">
 		<div class="col-sm">
-		  <ul class="nav nav-tabs" data-tabs="tabs">
+			{% if visi %}
+			<ul class="nav nav-tabs" data-tabs="tabs">
 			  <li class="nav-item">
-				<a class="nav-link" data-toggle = "tab" href="#vatrogasci">Vatrogasci</a>
+				<a class="nav-link" data-toggle = "tab" href="#orv">Optimalna raspodela vatrogasaca</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" data-toggle = "tab" href="#pul">Potencijalan broj ugrozenih ljudi po gradu</a>
 			  </li>
 			</ul>
-		
-			<div class="tab-content">
-				<div class="tab-pane container " id="vatrogasci">
-					<p>50 vatrogasaca je na raspolaganju.</p>
+			<div class="tab-content" id="tabs_of_tabels">
+				<div class="tab-pane container " id="orv">
+					<table class="table" id="tor" style="width:600px;">						
+						<tr>
+						{% for key, value in tabela.items %}
+							<th>{{ key }}</th>
+						{% endfor %}	
+						</tr>
+						{% for key, value in tabela.items %}
+						<tr>
+							<td>{{ key }}</td>
+							{% for k1, v1 in value.items %}
+								<td> {{ v1 }} <td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</table>
 				</div>
-			  </div>
-		
-			<table class="table" id="tabela-optimalne-raspodele" style="width:600px;">
-				
-				<tr>
-				{% for key, value in tabela.items %}
-					<th>{{ key }}</th>
-				{% endfor %}	
-				</tr>
-				{% for key, value in tabela.items %}
-				<tr>
-					<td>{{ key }}</td>
-					{% for k1, v1 in value.items %}
-						<td> {{ v1 }} <td>
+				<div class="tab-pane container " id="pul">
+					<table class="table" id="pul" style="width:600px;">						
+					{% for v in tab_ugr.values %}
+						<tr>
+							{% for v1 in v.values %}
+								<td> {{ v1 }} </td>
+							{% endfor %}
+						</tr>
 					{% endfor %}
-				</tr>
-				{% endfor %}
-				
-			</table>
-
+					</table>
+				</div>
+			</div>
+			{% else %}
+				<div></div>
+			{% endif %}
 		</div>
 		<div class="col-sm" id="map">
 		  <!-- <img src="https://xdn.tf.rs/2020/01/15/google-maps-beograd-670x447.jpg"> -->
@@ -42,7 +54,10 @@
 	  </div>
 	  <div class="row align-self-center">
 		<div class="col-sm">
-		  <button type="button" class="btn btn-info">Generisi optimalan raspored</button>
+			<form action="{% url 'toggle_visibility' %}" method="post">
+				{% csrf_token %}
+				<button type="submit" onclick="displayOptimalDistribution()" class="btn btn-info">Generisi optimalan raspored</button>
+			</form>
 		</div>
 		<div class="col-sm">
 			<label for="latitude">Latitude</label>
